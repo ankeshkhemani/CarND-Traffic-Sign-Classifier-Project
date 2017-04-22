@@ -63,3 +63,5 @@ Although this doesn't mean that it would work well for all images.
 
 ### Model Certainty - Softmax Probabilities
 The softmax probabilities were 100% correct for 5 out of 6 new images. For 1 image, softmax probability was 99% in favour of the correct class, which is still pretty remarkable.
+
+# References: For data augmentation and some other code, reference has been taken from Jeremy's project code at https://github.com/jeremy-shannon/CarND-Traffic-Sign-Classifier-Project
