@@ -72,7 +72,7 @@ I acquired 6 new images of german signs from internet. They can be found in the 
 3x.png again is from google street view and manually resized and has complex figure similar to other signs.
 4x.png was taken from google search, has a forest in background adding to noise.
 5x.png has varying brightness and has a complex figure similar to other signs.
-6x.png is an easy one taken from google search.
+6x.png is a simple one taken from google search.
 
 
 ### Performance on New Images
@@ -80,11 +80,27 @@ The model predicted with an accuracy of 50% on new images.
 The model performed very poorly on images taken from google street view, in my opinion primarily because they were manually scaled with a lot of warp and were hazy too.
 It also labelled a clearly visible road work sign wrongly, this class has a complex figure which is similar to other signs.
 
+Image  -           Actual                                Prediction
+1x.png - Right-of-way at the next intersection    Right-of-way at the next intersection 
+2x.png - Go straight or left                      Speed limit (60km/h)
+3x.png - Road work                                Wild animals crossing
+4x.png - General caution                          General caution
+5x.png - Road work                                Bicycles crossing
+6x.png - Speed limit (60km/h)                     Speed limit (60km/h)
 
 ### Model Certainty - Softmax Probabilities
 The softmax probabilities give an insight as to what went wrong with some images.
-2x.png 
+Here are the results of the prediction:
 
+Image  -           Actual                                Prediction
+1x.png - Right-of-way at the next intersection    (100%)Right-of-way at the next intersection 
+2x.png - Go straight or left                      (96%)Speed limit (60km/h), (2%)Speed limit (80km/h), (2%)Priority road
+3x.png - Road work                                (100%)Wild animals crossing
+4x.png - General caution                          (100%)General caution
+5x.png - Road work                                (49%)Bicycles crossing, (47%)Road work, (4%)Bumpy road
+6x.png - Speed limit (60km/h)                     (100%)Speed limit (60km/h)
+
+We observe that all correctly labeled classes have 100% probability. The ones that were manually scaled do especially bad, even giving 100% softmax probability to the wrong class. One road work sign which is clearly visible to eyes still gives 49% probability to Bicycles crossing and 47% to road work. This means the model has not trained well on the minute features of roadwork.
 
 # References: 
 For data augmentation and some other code, reference has been taken from Jeremy's project code at https://github.com/jeremy-shannon/CarND-Traffic-Sign-Classifier-Project
