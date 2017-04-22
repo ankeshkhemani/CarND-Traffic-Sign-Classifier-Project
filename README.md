@@ -67,11 +67,22 @@ So finally I trained the network with higher epoch of 50, batch size of 500 and 
 
 ### Acquiring New Images
 I acquired 6 new images of german signs from internet. They can be found in the project sub-directory "new-signs-data"
+https://github.com/ankeshkhemani/CarND-Traffic-Sign-Classifier-Project/blob/master/new-traffic-signs/1x.png
 1x.png was taken from google search, has a bright background and looks similar to other signs.
+
+https://github.com/ankeshkhemani/CarND-Traffic-Sign-Classifier-Project/blob/master/new-traffic-signs/2x.png
 2x.png is quite hazy as the photo was taken from a distance using google street view and then manually resized to 32x32
+
+https://github.com/ankeshkhemani/CarND-Traffic-Sign-Classifier-Project/blob/master/new-traffic-signs/3x.png
 3x.png again is from google street view and manually resized and has complex figure similar to other signs.
+
+https://github.com/ankeshkhemani/CarND-Traffic-Sign-Classifier-Project/blob/master/new-traffic-signs/4x.png
 4x.png was taken from google search, has a forest in background adding to noise.
+
+https://github.com/ankeshkhemani/CarND-Traffic-Sign-Classifier-Project/blob/master/new-traffic-signs/5x.png
 5x.png has varying brightness and has a complex figure similar to other signs.
+
+https://github.com/ankeshkhemani/CarND-Traffic-Sign-Classifier-Project/blob/master/new-traffic-signs/6x.png
 6x.png is a simple one taken from google search.
 
 
