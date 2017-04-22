@@ -23,46 +23,68 @@ My dataset preprocessing consisted of:
 
 
 ### Model Architecture
-I started with a base architecture of LeNet and then modified it into a new function LeNet2 which has the following layers:
-1. 5x5 convolution (32x32x1 in, 28x28x6 out)
-2. ReLU
-3. 2x2 max pool (28x28x6 in, 14x14x6 out)
-4. 5x5 convolution (14x14x6 in, 10x10x16 out)
-5. ReLU
-6. 2x2 max pool (10x10x16 in, 5x5x16 out)
-7. 5x5 convolution (5x5x6 in, 1x1x400 out)
-8. ReLu
-9. Flatten layers from numbers 8 (1x1x400 -> 400) and 6 (5x5x16 -> 400)
-Concatenate flattened layers to a single size-800 layer
-Dropout layer
-Fully connected layer (800 in, 43 out)
+As described in the lessons, the LeNet architecture is very well suited for image recognition and is a good starting point for traffic sign classification.
+I started with a standard architecture of LeNet which has the following layers:
+
+1.  Layer 1: Convolutional. Input = 32x32x1. Output = 28x28x6.
+2.          Activation.
+3.          Pooling. Input = 28x28x6. Output = 14x14x6.
+4.  Layer 2: Convolutional.Input = (Layer 1 output)14x14x6 Output = 10x10x16.
+5.         Activation.
+6.          Pooling. Input = 10x10x16. Output = 5x5x16.        
+7.  Layer 3: Convolutional.Input = (Layer 2 output)5x5x16 Output = 1x1x400.
+8.          Activation.
+9.  L2_Flatten: Input = (Layer 2 output)5x5x16  Output = 400.
+10. L3_Flatten: Input = (Layer 3 output)1x1x400. Output = 400.
+11. Concat L2_Flatten and L3_Flatten: Input = 400 + 400. Output = 800
+12. Dropout
+13. Layer 4: Fully Connected. Input = 800. Output = 43 (Logits)
+
+
 
 ### Model Training
 I used the Adam optimizer. The settings used were:
-batch size: 100
-epochs: 60
-learning rate: 0.0009
+batch size: 500
+epochs: 50
+learning rate: 0.005
 mu: 0
 sigma: 0.1
 dropout keep probability: 0.5
 
 ### Solution Approach
-I Started with LeNet architecture and through several trials, first finalized the optimizer's hyperparameters.
-After that, I played around with different layers to get a better validation accuracy.
-The Test Accuracy was 94.7%
+
+Initially, I trained the network with epoch=15 and batch size=50 and learning rate = 0.01
+It was noticed that the validation accuracy was fluctuating and reached only 0.84, which points that it may be diverging adhoc due to a higher learning rate.
+
+So I trained the network with epoch=15, batch size=50 and learning rate = 0.001 and attained a validation accuracy of 0.94 but the test accuracy was 0.92. This is probably acceptable for submission but the difference between validation and test accuracy looked suspicious.
+
+So I trained the network with epoch=15, a higher batch size of 500 and faster learning rate =0.01 and attained a validation accuracy of 0.949 and a test accuracy of 0.932. Still some difference.
+
+So finally I trained the network with higher epoch of 50, batch size of 500 and medium learning rate 0.005 and attained a validation accuracy of 0.972 and a test accuracy of 0.948. This is the final solution I am submitting.
 
 
 ## Test a Model on New Images
 
 ### Acquiring New Images
-I acquired 6 new images of german signs from internet
+I acquired 6 new images of german signs from internet. They can be found in the project sub-directory "new-signs-data"
+1x.png was taken from google search, has a bright background and looks similar to other signs.
+2x.png is quite hazy as the photo was taken from a distance using google street view and then manually resized to 32x32
+3x.png again is from google street view and manually resized and has complex figure similar to other signs.
+4x.png was taken from google search, has a forest in background adding to noise.
+5x.png has varying brightness and has a complex figure similar to other signs.
+6x.png is an easy one taken from google search.
+
 
 ### Performance on New Images
-The model predicted with an accuracy of 100% on new images. 
-Although this doesn't mean that it would work well for all images.
+The model predicted with an accuracy of 50% on new images.
+The model performed very poorly on images taken from google street view, in my opinion primarily because they were manually scaled with a lot of warp and were hazy too.
+It also labelled a clearly visible road work sign wrongly, this class has a complex figure which is similar to other signs.
+
 
 ### Model Certainty - Softmax Probabilities
-The softmax probabilities were 100% correct for 5 out of 6 new images. For 1 image, softmax probability was 99% in favour of the correct class, which is still pretty remarkable.
+The softmax probabilities give an insight as to what went wrong with some images.
+2x.png 
+
 
 # References: 
 For data augmentation and some other code, reference has been taken from Jeremy's project code at https://github.com/jeremy-shannon/CarND-Traffic-Sign-Classifier-Project
