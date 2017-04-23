@@ -3,6 +3,8 @@ My submission for the Udacity Self-Driving Car Nanodegree program Project 2 - Tr
 
 ## Dataset Exploration
 ### Dataset Summary
+Data can be downloaded from here. https://d17h27t6h515a5.cloudfront.net/topher/2017/February/5898cd6f_traffic-signs-data/traffic-signs-data.zip
+
 Number of training examples = 34799
 Number of validation examples = 4410
 Number of testing examples = 12630
