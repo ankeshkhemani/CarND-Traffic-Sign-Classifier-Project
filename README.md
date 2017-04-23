@@ -126,6 +126,7 @@ Image  -           Actual             -                   Prediction
 
 
 We observe that all correctly labeled classes have 100% probability. The ones that were manually scaled do especially bad, even giving 100% softmax probability to the wrong class. One road work sign which is clearly visible to eyes still gives 49% probability to Bicycles crossing and 47% to road work. This means the model has not trained well on the minute features of roadwork.
+The accuracy on the captured images is 50-75% (75% if we discount 2 wrong classifications to bad scaling) while it was 94.8% on the testing set thus It seems the model is overfitting.
 
 # References: 
 For data augmentation and some other code, reference has been taken from Jeremy's project code at https://github.com/jeremy-shannon/CarND-Traffic-Sign-Classifier-Project
